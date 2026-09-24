@@ -115,7 +115,7 @@ const char* stateName(LockState s) {
 
 // DIEM DUY NHAT phat su kien. Tuan 4: them 1 dong publish MQTT o day.
 void logEvent(const char* evt, const char* detail = "") {
-  Serial.printf("[%lu] EVT=%s state=%s %s\n", millis(), evt, stateName(state), detail);
+  Serial.printf("[%lu] EVT=%s state=%s %s\r\n", millis(), evt, stateName(state), detail);
 }
 
 void uidToString(const byte* uid, byte size, char* out, size_t outLen) {
@@ -211,7 +211,7 @@ bool doorUpdate(unsigned long now) {
 // KHOI E - STATE MACHINE
 // ============================================================
 void enterState(LockState s, unsigned long now) {
-  Serial.printf("[%lu] STATE %s -> %s\n", now, stateName(state), stateName(s));
+  Serial.printf("[%lu] STATE %s -> %s\r\n", now, stateName(state), stateName(s));
   state = s;
   stateSince = now;
   switch (s) {
@@ -356,7 +356,7 @@ void rfidPoll(unsigned long now) {
 }
 
 void printStatus() {
-  Serial.printf("[%lu] STATUS state=%s door=%s lockout=%s fail=%u loopMaxUs=%lu\n",
+  Serial.printf("[%lu] STATUS state=%s door=%s lockout=%s fail=%u loopMaxUs=%lu\r\n",
                 millis(), stateName(state), doorStable ? "OPEN" : "CLOSED",
                 lockoutActive ? "YES" : "NO", failCount, loopMaxUs);
 }
